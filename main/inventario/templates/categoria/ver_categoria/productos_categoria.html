@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-10 offset-1">
+    <h4>Categoría: {{categoria.categoria_nombre}}</h4>
+<table class="table table-striped border border-secondary rounded" id="tablaCategoria">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Imagen</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Descripción</th>
+        <th scope="col">Stock</th>
+        <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if productos_filtrados %}
+    {% for producto in productos_filtrados %}
+    <tr>
+        <th scope="row">{{producto.id}}</th>
+        <td><img src="{{producto.producto_imagen.url}}" height="50" width="50"></td>
+        <td>{{ producto.producto_nombre }}</td>
+        <td>{{ producto.producto_descripcion }}</td>
+        <td>{{ producto.producto_stock }}</td>
+        <td>
+            <div class="btn-group" role="group" aria-label="Basic example">
+            <a class="btn btn-secondary" href="{% url 'editar' pk=producto.id %}"><i class="fas fa-edit"></i>Editar</a>
+            <a class="btn btn-secondary" href="{% url 'eliminar' pk=producto.id %}"><i class="fas fa-trash-alt"></i>Eliminar</a>
+            </div>
+        </td>
+    </tr>
+    {% endfor %}
+{% else %}
+    <p>No hay productos :(.</p>
+{% endif %}
+  </tbody>
+</table>
+</div>
+
+{% endblock %}

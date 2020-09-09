@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 style="text-align: center">Categorias</h2>
+<div class="row">
+
+    {% if categorias_actuales %}
+    {% for categoria in categorias_actuales %}
+    <div class="card col-3 shadow mr-auto ml-auto " style="width: 18rem;">
+      <img class="card-img-top" src="{{ categoria.categoria_imagen.url }}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{ categoria.categoria_nombre }}</h5>
+        <p class="card-text">{{ categoria.categoria_descripcion }}</p>
+
+        <a href="{% url 'categoria' categoria.id%}" class="btn btn-primary">Ver</a>
+        <a href="{% url 'editar_categoria' categoria.id%}" class="btn btn-primary">Editar</a>
+        <a href="{% url 'eliminar_categoria' categoria.id%}" class="btn btn-danger float-right">Eliminar</a>
+
+      </div>
+    </div>
+
+    {% endfor %}
+{% else %}
+    <p>No hay categorias :(.</p>
+{% endif %}
+
+</div>
+{% endblock %}

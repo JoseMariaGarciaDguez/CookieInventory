@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!-- saved from url=(0051)https://getbootstrap.com/docs/4.3/examples/sign-in/ -->
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Jekyll v3.8.5">
+  <title>Cookie Inventory · Acceder</title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/sign-in/">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- Bootstrap core CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">  <link rel="stylesheet" href="../assets/signin.css">
+  <style>
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+        .fondo{
+          width: 100%;
+          height: 100vh;
+          background: url("/static/img/login/login_pattern.png")
+        }
+      }
+    </style>
+    <script>
+    $(function(){
+      var move=0.2;
+      setInterval(function(){
+        move+=0.2;
+        $(".fondo").css("background-position", move + "px");
+      })
+    })
+    </script>
+  <!-- Custom styles for this template -->
+</head>
+<div class="fondo">
+<body class="text-center">
+  <form class="form-signin pt-10" method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <img class="mb-4" src="/static/img/login/CookieInventory Logo.png" alt="" width="144" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Ingresar en sistema</h1>
+    <div class="col-4 offset-4">
+    <label for="username" class="sr-only">Nombre de usuario</label>
+    <input type="text" id="inputEmail" class="form-control" placeholder="Nombre de usuario" required="" autofocus="" name="username">
+    <label for="username" class="sr-only">Contraseña</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required="" name="password">
+    <div class="checkbox mb-3">
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Acceder</button>
+    </div>
+    <p class="mt-5 mb-3 text-muted">© 2018-2019</p>
+  </form>
+</div>
+
+</body>
+
+</html>

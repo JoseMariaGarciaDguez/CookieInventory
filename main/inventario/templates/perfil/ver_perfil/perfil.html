@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 style="text-align: center">Editar Perfil</h2>
+  <form method="post" enctype="multipart/form-data">
+
+    <div style="text-align: center">
+      <div class="col-12">
+        <div class="form-group">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <input class="btn btn-primary" type="submit" value="Guardar">
+          <a class="btn btn-secondary" href="{% url 'index' %}">Volver</a>
+        </div>
+      </div>
+    </div>
+{% endblock %}

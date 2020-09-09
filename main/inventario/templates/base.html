@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% load staticfiles %}
+  <script src="{% static 'jquery-3.3.1.js' %}"></script>
+  <script src="{% static 'popper.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'fontawesome/css/all.css' %}">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css"/>
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <script type="text/javascript">
+     $(document).ready(function() {
+    $('#tablaProductos').DataTable(formatoTabla());
+    $('#tablaCategoria').DataTable(formatoTabla());
+    function formatoTabla(){
+        return{
+            "language": {
+                "sProcessing":     "Procesando...",
+                "sLengthMenu":     "",
+                "sZeroRecords":    "No se encontraron resultados",
+                "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                "sInfo":           "",
+                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered":   "",
+                "sInfoPostFix":    "",
+                "sSearch":         "Buscar:",
+                "sUrl":            "",
+                "sInfoThousands":  ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                    "sFirst":    "Primero",
+                    "sLast":     "Último",
+                    "sNext":     "Siguiente",
+                    "sPrevious": "Anterior"
+                },
+                "oAria": {
+                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                }
+            }
+          }
+
+    }
+});
+  </script>
+</head>
+<body>
+{% block navbar %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light border border-secondary mb-2">
+  <img src="{% static 'img/create.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+  <a class="navbar-brand" href="{% url 'index' %}">CookieInventory</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'categorias' %}">
+          Categorias
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="mr-2">
+    <h5 class="navbar-brand">Hola, {{ user.username }}</h5><img src="{{ user.foto.url }}" height="50" width="50" class="shadow rounded"/>
+  </div>
+  <div class="social-part">
+
+<!-- Example single danger button -->
+    <div class="btn-group">
+      <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-cog"></i>
+      </button>
+      <div class="dropdown-menu dropdown-menu-right">
+        <a class="dropdown-item text-align-left" href="{% url 'perfil' pk=user.id %}"><i class="fas fa-user"></i> Perfil</a>
+        <div class="dropdown-divider"></div>
+        {% if user.is_superuser == 1 %}
+        <a class="dropdown-item text-align-left" href="{% url 'admin:index' %}"><i class="fas fa-users-cog"></i> Administrar</a>
+        {% endif %}
+        <a class="dropdown-item text-align-left bg-danger" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
+      </div>
+    </div>
+  </div>
+</nav>
+{% endblock %}
+
+<div class="container-fluid">
+  {% block content %}
+
+  {% endblock %}
+</div>
+
+</body>
+</html>

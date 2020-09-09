@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Eliminar categoria{% endblock %}
+
+{% block content %}
+  <form action="" method="post" >
+    {% csrf_token %}
+
+    <div class="row">
+      <div class="col-4 offset-4">
+        <div class="form-group">
+          <h3>¿Desea eliminar la categoria {{categoria.categoria_nombre}} y sus productos?</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-4 offset-4">
+        <div class="form-group text-center">
+          <input type="submit" class="btn btn-primary" value="Eliminar">
+          <a class="btn btn-secondary" href="{% url 'index' %}">Cancelar</a>
+        </div>
+      </div>
+    </div>
+
+  </form>
+{% endblock %}
